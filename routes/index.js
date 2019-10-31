@@ -1,9 +1,8 @@
 const Route = require('express').Router();
+const userRoute = require('./userRoute');
 const zomatoRoute = require('./zomatoRoute')
 
-Route.get('/', (req, res, next) => {
-  res.status(200).json({msg: 'Initial Commit'})
-})
+Route.use('/', userRoute);
 
 Route.use('/zomato', zomatoRoute)
 
