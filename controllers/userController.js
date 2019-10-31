@@ -21,6 +21,7 @@ module.exports = {
         .catch(next)
     }
   },
+  
   signinG (req, res, next) {
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
     let username
