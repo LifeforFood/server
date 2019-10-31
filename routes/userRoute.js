@@ -6,6 +6,4 @@ Route.post('/signin', userCont.signin);
 Route.post('/signinG', userCont.signinG);
 Route.post('/signup', userCont.signup);
 
-Route.get('/', authentication, userCont.getTest);
-
 module.exports = Route;

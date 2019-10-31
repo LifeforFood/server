@@ -8,7 +8,7 @@ class ZomatoController{
       mehod: 'get'
     })
       .then(({ data })=>{
-        res.status(200).json(data)
+        res.status(200).json(data.collections)
       })
       .catch(err=>{
         console.log(err)

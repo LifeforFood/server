@@ -2,6 +2,8 @@ const User = require('../models/user');
 const { comparePassword } = require('../helpers/hash');
 const { signToken } = require('../helpers/jwt');
 const { OAuth2Client } = require('google-auth-library');
+const { sendMail } = require('../helpers/sendMail');
+
 
 module.exports = {
   signin (req, res, next) {
@@ -21,7 +23,6 @@ module.exports = {
         .catch(next)
     }
   },
-  
   signinG (req, res, next) {
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
     let username
@@ -46,6 +47,7 @@ module.exports = {
         if(user) {
           return user
         } else {
+          sendMail(email, `Thanks for Register <img src='https://media.giphy.com/media/TpsTNF36M4kX6/giphy.gif'>`)
           return User.create({ username, password, email })
         }
       })
@@ -67,13 +69,11 @@ module.exports = {
             username: user.username,
             email: user.email
           }
+          sendMail(email, `Thanks for Register <img src='https://media.giphy.com/media/TpsTNF36M4kX6/giphy.gif'>`)
           const token = signToken(payload)
           res.status(201).json({ msg: 'User Created!', data: user, token })
         })
         .catch(next)
     }
-  },
-  getTest (req, res, next) {
-    res.status(200).json({ msg: 'haii anda sudah login:) '})
   }
 }
