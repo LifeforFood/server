@@ -2,7 +2,6 @@ const nodemailer = require('nodemailer');
 
 module.exports = {
     sendMail(receiver,msg) {
-      console.log(msg)
       let transporter = nodemailer.createTransport({
           service : 'gmail',
           auth : {
@@ -18,8 +17,6 @@ module.exports = {
               text : msg || 'Thanks for Register :)',
               html : `<a href="https://www.gambaranimasi.org/cat-email-235.htm"><img src="https://www.gambaranimasi.org/data/media/235/animasi-bergerak-email-0220.gif" border="0" alt="animasi-bergerak-email-0220" /></a>`
       }
-
-      console.log(mainOption)
 
       transporter.sendMail(mainOption)
           .then(function(){

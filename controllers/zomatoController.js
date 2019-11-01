@@ -2,18 +2,14 @@ const zomatoAPI = require('../apis/zomatoAPI')
 
 class ZomatoController{
   static getRestaurants(req, res, next){
-    const {cityId} = req.params
     zomatoAPI({
-      url: `/collections?city_id=${cityId}&count=10`,
-      mehod: 'get'
+      url: `/search?entity_id=74&entity_type=city&count=9`,
+      method: 'get'
     })
       .then(({ data })=>{
-        res.status(200).json(data.collections)
+        res.status(200).json(data.restaurants)
       })
-      .catch(err=>{
-        console.log(err)
-        res.status(500).json(err)
-      })
+      .catch(next)
   }
 
   static restaurantDetail(req, res, next){
@@ -25,26 +21,20 @@ class ZomatoController{
       .then(({ data })=>{
         res.status(200).json(data)
       })
-      .catch(err=>{
-        console.log(err)
-        res.status(500).json(err)
-      })
+      .catch(next)
   }
 
   static randomRestaurant(req, res, next){
-    const {cityId} = req.params
     zomatoAPI({
-      url: `/collections?city_id=${cityId}&count=25`,
+      url: `/search?entity_id=74&entity_type=city&count=25`,
       mehod: 'get'
     })
       .then(({ data })=>{
+        console.log(data)
         const randomNumber = Math.floor(Math.random() * 26)
-        res.status(200).json(data.collections[randomNumber])
+        res.status(200).json(data.restaurants[randomNumber])
       })
-      .catch(err=>{
-        console.log(err)
-        res.status(500).json(err)
-      })
+      .catch(next)
   }
 
   static searchRestaurants(req,res,next){
@@ -52,9 +42,10 @@ class ZomatoController{
     const {filter} = req.query
     zomatoAPI({
       method: 'GET',
-      url:`search?entity_id=${cityId}&entity_type=city&q=${filter}`
+      url:`/search?entity_id=${cityId}&entity_type=city&q=${filter}`
     })
     .then(({data})=>{
+      console.log(data)
       res.status(200).json(data)
     }) 
     .catch(err=>{
