@@ -26,12 +26,12 @@ class ZomatoController{
 
   static randomRestaurant(req, res, next){
     zomatoAPI({
-      url: `/search?entity_id=74&entity_type=city&count=25`,
+      url: `/search?entity_id=74&entity_type=city&count=20`,
       mehod: 'get'
     })
       .then(({ data })=>{
         console.log(data)
-        const randomNumber = Math.floor(Math.random() * 26)
+        const randomNumber = Math.floor(Math.random() * 20)
         res.status(200).json(data.restaurants[randomNumber])
       })
       .catch(next)
