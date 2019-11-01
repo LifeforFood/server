@@ -1,7 +1,7 @@
 module.exports = (err, req, res, next) => {
   console.log(err)
   if(err.code == 11000) {
-    res.status(400).json({ msg: 'Validation Error' })
+    res.status(400).json({ msg: 'Duplicate Detected!' })
   } else if(err.msg == 'wrong') {
     res.status(403).json({ msg: 'Email/Password Wrong!' })
   } else if(err.msg == 'empty') {

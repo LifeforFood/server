@@ -69,7 +69,7 @@ module.exports = {
             username: user.username,
             email: user.email
           }
-          sendMail(email, `Thanks for Register <img src='https://media.giphy.com/media/TpsTNF36M4kX6/giphy.gif'>`)
+          sendMail(email, 'Thanks For Register!')
           const token = signToken(payload)
           res.status(201).json({ msg: 'User Created!', data: user, token })
         })
