@@ -46,6 +46,21 @@ class ZomatoController{
         res.status(500).json(err)
       })
   }
+
+  static searchRestaurants(req,res,next){
+    const {cityId} = req.params
+    const {filter} = req.query
+    zomatoAPI({
+      method: 'GET',
+      url:`search?entity_id=${cityId}&entity_type=city&q=${filter}`
+    })
+    .then(({data})=>{
+      res.status(200).json(data)
+    }) 
+    .catch(err=>{
+      console.log(err)
+    }) 
+  }
   
 }
 
