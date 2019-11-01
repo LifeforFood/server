@@ -16,7 +16,13 @@ module.exports = {
     const name = req.body.name
     if(!zomatoId) throw { msg: 'empty' }
     else {
-      Fav.create({ zomatoId, name })
+      Fav.findOne({ zomatoId })
+        .then(zomato => {
+          if(zomato) throw { code: 11000 }
+          else {
+            return Fav.create({ zomatoId, name })
+          }
+        })
         .then(fav => {
           return Fav.findByIdAndUpdate({ _id: fav._id }, { $push: { UserId }})
         })

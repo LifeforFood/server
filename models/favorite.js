@@ -4,7 +4,7 @@ const Schema = Mongoose.Schema;
 const FavSchema = new Schema({
   zomatoId: {
     type: String,
-    required: true
+    unique: true
   },
   UserId: [
     {

@@ -30,7 +30,6 @@ class ZomatoController{
       mehod: 'get'
     })
       .then(({ data })=>{
-        console.log(data)
         const randomNumber = Math.floor(Math.random() * 20)
         res.status(200).json(data.restaurants[randomNumber])
       })
@@ -45,12 +44,9 @@ class ZomatoController{
       url:`/search?entity_id=${cityId}&entity_type=city&q=${filter}`
     })
     .then(({data})=>{
-      console.log(data)
       res.status(200).json(data)
     }) 
-    .catch(err=>{
-      console.log(err)
-    }) 
+    .catch(next) 
   }
   
 }
