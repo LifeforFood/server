@@ -12,6 +12,10 @@ const FavSchema = new Schema({
       ref: 'users'
     }
   ],
+  name: {
+    type: String,
+    required: true
+  },
   createdAt: Date
 })
 
