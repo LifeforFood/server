@@ -33,8 +33,8 @@ module.exports = {
     }
   },
   deleteFav (req, res, next) {
-    const _id = req.params.id
-    Fav.findByIdAndDelete({ _id })
+    const zomatoId = req.params.id
+    Fav.findOneAndDelete({ zomatoId })
       .then(() => {
         res.status(200).json({ msg: 'success deleted!' })
       })

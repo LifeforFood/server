@@ -53,7 +53,6 @@ module.exports = {
       })
       .then((user) => {
         const payloadCreate = {username, email, password}
-        console.log(payloadCreate)
         const tokenCreate = signToken(payloadCreate);
         res.status(200).json({ token: tokenCreate, user })
       })
